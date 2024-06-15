@@ -4,7 +4,49 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Random Movie Picker</title>
-    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            text-align: center;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        #numberInput {
+            margin-bottom: 20px;
+            padding: 10px;
+            font-size: 16px;
+        }
+
+        #pickButton {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        #pickButton:hover {
+            background-color: #0056b3;
+        }
+
+        #movieInfo {
+            margin-top: 20px;
+        }
+    </style>
 </head>
 <body>
     <div class="container">
@@ -14,6 +56,32 @@
         <button id="pickButton">Pick a Movie</button>
         <div id="movieInfo"></div>
     </div>
-    <script src="script.js"></script>
+    <script>
+        const movies = [
+            { index: 1, title: "The Shawshank Redemption", length: "142 min", rating: "9.3", poster: "https://m.media-amazon.com/images/M/MV5BMDFkYTc0MGEtZmNhMC00ZDJlLTliYzYtNWJhMGQ0ZDJlZjJkXkEyXkFqcGdeQXVyNDYzODI1MTk@._V1_.jpg" },
+            { index: 2, title: "The Godfather", length: "175 min", rating: "9.2", poster: "https://m.media-amazon.com/images/M/MV5BM2MyNjYxNmYtYTAwNi00ZjQ5LWFmNTEtODM1ZmRhZGM3NzAxXkEyXkFqcGdeQXVyNzkwMjQ5NzM@._V1_.jpg" },
+            { index: 3, title: "The Dark Knight", length: "152 min", rating: "9.0", poster: "https://m.media-amazon.com/images/M/MV5BNzA5ZDdiNmEtZGRjMC00ZjNlLWI5MGMtN2E0N2M4ODU2YzZlXkEyXkFqcGdeQXVyNzkwMjQ5NzM@._V1_.jpg" },
+            { index: 4, title: "Pulp Fiction", length: "154 min", rating: "8.9", poster: "https://m.media-amazon.com/images/M/MV5BNGNhMDIzMDktYTc2Zi00ZmNhLWIwNTEtN2FmNzVhZDZkYzY0XkEyXkFqcGdeQXVyNzkwMjQ5NzM@._V1_.jpg" },
+            { index: 5, title: "The Lord of the Rings: The Return of the King", length: "201 min", rating: "8.9", poster: "https://m.media-amazon.com/images/M/MV5BNzA5ZDdiNmEtZGRjMC00ZjNlLWI5MGMtN2E0N2M4ODU2YzZlXkEyXkFqcGdeQXVyNzkwMjQ5NzM@._V1_.jpg" },
+            { index: 6, title: "Schindler's List", length: "195 min", rating: "8.9", poster: "https://m.media-amazon.com/images/M/MV5BNWYxNzY3MjgtMzFiMC00ZjBjLWEzMTYtYmFiNzBlNzFiNGRhXkEyXkFqcGdeQXVyNzkwMjQ5NzM@._V1_.jpg" },
+            { index: 7, title: "Fight Club", length: "139 min", rating: "8.8", poster: "https://m.media-amazon.com/images/M/MV5BMmEzNjkzM2YtNzYwZC00ZWM1LWIxZmUtZDZkNDE0YmNkYzg1XkEyXkFqcGdeQXVyNzkwMjQ5NzM@._V1_.jpg" },
+            { index: 8, title: "Forrest Gump", length: "142 min", rating: "8.8", poster: "https://m.media-amazon.com/images/M/MV5BNWIwODUzOTMtZmFiNi00N2M0LThkZTMtNGI5NWI4ODQ4MWQxXkEyXkFqcGdeQXVyNTAyODkwOQ@@._V1_.jpg" },
+            { index: 9, title: "Inception", length: "148 min", rating: "8.7", poster: "https://m.media-amazon.com/images/M/MV5BMjAxMzY3NjAxNl5BMl5BanBnXkFtZTcwNTI5OTM0Mw@@._V1_.jpg" },
+            { index: 10, title: "The Matrix", length: "136 min", rating: "8.7", poster: "https://m.media-amazon.com/images/M/MV5BNzQzOTk3NzItMTM5NS00ZTk2LThmNDEtNzQ5YjVjZmZhYTRhXkEyXkFqcGdeQXVyNzkwMjQ5NzM@._V1_.jpg" },
+        ];
+
+        document.getElementById('pickButton').addEventListener('click', () => {
+            const n = document.getElementById('numberInput').value;
+            const randomIndex = Math.floor(Math.random() * n);
+            const movie = movies[randomIndex];
+
+            document.getElementById('movieInfo').innerHTML = `
+                <h2>${movie.title}</h2>
+                <p><strong>Length:</strong> ${movie.length}</p>
+                <p><strong>IMDB Rating:</strong> ${movie.rating}</p>
+                <img src="${movie.poster}" alt="${movie.title} Poster" width="200">
+            `;
+        });
+    </script>
 </body>
 </html>
